@@ -38,3 +38,5 @@ Here is my best practices in functional programing
 - if method is too complex then seperate flow into a pipe method so you can read main code block more clearly. No need to compile codes in your brain.
 
 - Do not pass any monad as parameter to another method.
+
+- Avoid void methods
