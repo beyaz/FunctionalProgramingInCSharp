@@ -11,11 +11,11 @@ Here is a simple usage return error. Usage for validation methods.
 
 Combine methods by using then expression
 
-![](./doc/UsegeOfThen.png)
+![](./doc/UsegeOfThen.PNG)
 
 Usage of pipe
 
-![](./doc/UsageOfPipe.png)
+![](./doc/UsageOfPipe.PNG)
 
 
 Here is my best practices in functional programing
