@@ -18,8 +18,8 @@ Usage of pipe
 ![](./doc/UsageOfPipe.png)
 
 
-My best practice in functional programing
------------------------------------------
+Here is my best practices in functional programing
+--------------------------------------------------
 
 - Avoid mutable states
 

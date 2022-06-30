@@ -2,11 +2,13 @@
  *  Written by Abdullah Beyaztaş.
  *  Utility tools for applying functional coding style in c# language.
  */
-namespace FP;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+
+namespace FP;
 
 /// <summary>
 ///     The error
@@ -15,6 +17,21 @@ using System.Linq;
 public sealed class Error
 {
     #region Public Properties
+    /// <summary>
+    ///     Gets the caller file path.
+    /// </summary>
+    public string CallerFilePath { get; set; }
+
+    /// <summary>
+    ///     Gets the caller line number.
+    /// </summary>
+    public int? CallerLineNumber { get; set; }
+
+    /// <summary>
+    ///     Gets the caller member name.
+    /// </summary>
+    public string CallerMemberName { get; set; }
+
     /// <summary>
     ///     Gets or sets the message.
     /// </summary>
@@ -328,6 +345,41 @@ public static class FpExtensions
             return funcF(responseE.Value);
         };
     }
+
+    public static Error NewError(string message, [CallerFilePath] string callerFilePath = null, [CallerMemberName] string callerMemberName = null, [CallerLineNumber] int callerLineNumber = -1)
+    {
+        return new Error
+        {
+            Message          = message,
+            CallerFilePath   = callerFilePath,
+            CallerMemberName = callerMemberName,
+            CallerLineNumber = callerLineNumber < 0 ? null : callerLineNumber
+        };
+    }
+
+    #region Pipe with no parameter
+    public static Response<C> Pipe<A, B, C>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC)
+    {
+        return Compose(funcA, funcB, funcC)();
+    }
+
+    public static Response<D> Pipe<A, B, C, D>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC, Func<C, Response<D>> funcD)
+    {
+        return Compose(funcA, funcB, funcC, funcD)();
+    }
+
+    public static Response<E> Pipe<A, B, C, D, E>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC, Func<C, Response<D>> funcD, Func<D, Response<E>> funcE)
+    {
+        return Compose(funcA, funcB, funcC, funcD, funcE)();
+    }
+
+    public static Response<F> Pipe<A, B, C, D, E, F>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC, Func<C, Response<D>> funcD, Func<D, Response<E>> funcE, Func<E, Response<F>> funcF)
+    {
+        return Compose(funcA, funcB, funcC, funcD, funcE, funcF)();
+    } 
+    #endregion
+
+
 
     public static Response<C> Pipe<TValue, A, B, C>(TValue value, Func<TValue, Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC)
     {
