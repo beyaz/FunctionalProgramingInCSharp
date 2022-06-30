@@ -11,11 +11,11 @@ Here is a simple usage return error. Usage for validation methods.
 
 Combine methods by using then expression
 
-![](./doc/UsegeOfThen.png)
+![](./doc/UsegeOfThen.PNG)
 
 Usage of pipe
 
-![](./doc/UsageOfPipe.png)
+![](./doc/UsageOfPipe.PNG)
 
 
 Here is my best practices in functional programing
@@ -38,5 +38,3 @@ Here is my best practices in functional programing
 - if method is too complex then seperate flow into a pipe method so you can read main code block more clearly. No need to compile codes in your brain.
 
 - Do not pass any monad as parameter to another method.
-
-- Avoid void methods
