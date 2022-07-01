@@ -1,9 +1,6 @@
 # Functional Programing in c#
 
-Response<TValue>
-==============
-
-'Response<TValue>' is a simple class (monad) that contains value or errors.
+**Response&lt;TValue&gt;** is a simple class (monad) that contains value or errors.
 
 Here is a simple usage of return error. Usage for validation methods.
 
