@@ -357,30 +357,6 @@ public static class FpExtensions
         };
     }
 
-    #region Pipe with no parameter
-    public static Response<C> Pipe<A, B, C>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC)
-    {
-        return Compose(funcA, funcB, funcC)();
-    }
-
-    public static Response<D> Pipe<A, B, C, D>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC, Func<C, Response<D>> funcD)
-    {
-        return Compose(funcA, funcB, funcC, funcD)();
-    }
-
-    public static Response<E> Pipe<A, B, C, D, E>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC, Func<C, Response<D>> funcD, Func<D, Response<E>> funcE)
-    {
-        return Compose(funcA, funcB, funcC, funcD, funcE)();
-    }
-
-    public static Response<F> Pipe<A, B, C, D, E, F>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC, Func<C, Response<D>> funcD, Func<D, Response<E>> funcE, Func<E, Response<F>> funcF)
-    {
-        return Compose(funcA, funcB, funcC, funcD, funcE, funcF)();
-    } 
-    #endregion
-
-
-
     public static Response<C> Pipe<TValue, A, B, C>(TValue value, Func<TValue, Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC)
     {
         return Compose(() => funcA(value), funcB, funcC)();
@@ -439,39 +415,25 @@ public static class FpExtensions
     }
     #endregion
 
-
-    public static Response ProcessByUserId(int userId)
+    #region Pipe with no parameter
+    public static Response<C> Pipe<A, B, C>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC)
     {
-        return Pipe(userId,
-                    GetUserFromDatabase,
-                    SendEMailForUser,
-                    MarkUserAsMailNotificationCompleted,
-                    SaveUser);
+        return Compose(funcA, funcB, funcC)();
     }
 
-    public static Response<UserInfo> GetUserFromDatabase(int userId)
+    public static Response<D> Pipe<A, B, C, D>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC, Func<C, Response<D>> funcD)
     {
-        throw new NotImplementedException();
+        return Compose(funcA, funcB, funcC, funcD)();
     }
 
-    public static Response<UserInfo> SendEMailForUser(UserInfo userInfo)
+    public static Response<E> Pipe<A, B, C, D, E>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC, Func<C, Response<D>> funcD, Func<D, Response<E>> funcE)
     {
-        throw new NotImplementedException();
+        return Compose(funcA, funcB, funcC, funcD, funcE)();
     }
 
-    public static Response<UserInfo> MarkUserAsMailNotificationCompleted(UserInfo userInfo)
+    public static Response<F> Pipe<A, B, C, D, E, F>(Func<Response<A>> funcA, Func<A, Response<B>> funcB, Func<B, Response<C>> funcC, Func<C, Response<D>> funcD, Func<D, Response<E>> funcE, Func<E, Response<F>> funcF)
     {
-        throw new NotImplementedException();
+        return Compose(funcA, funcB, funcC, funcD, funcE, funcF)();
     }
-
-    public static Response<UserInfo> SaveUser(UserInfo userInfo)
-    {
-        throw new NotImplementedException();
-    }
-    
-    
-}
-
-public class UserInfo
-{
+    #endregion
 }

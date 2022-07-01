@@ -5,9 +5,7 @@ Response<TValue>
 
 'Response<TValue>' is a simple class (monad) that contains value or errors.
 
-&nbsp;
-
-Here is a simple usage return error. Usage for validation methods.
+Here is a simple usage of return error. Usage for validation methods.
 
 ```csharp
     public static Response<int> DivideByZero(int value, int divider)
