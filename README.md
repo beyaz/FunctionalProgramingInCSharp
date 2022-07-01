@@ -18,7 +18,7 @@ Here is a simple usage of return error. Usage for validation methods.
 
 &nbsp;
 
-Combine methods by using **Then** expression
+Combine methods by using **Then** method.
 
 ```csharp
 
