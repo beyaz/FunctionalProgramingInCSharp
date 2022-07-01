@@ -5,6 +5,8 @@ Response<TValue>
 
 'Response<TValue>' is a simple class (monad) that contains value or errors.
 
+&nbsp;
+
 Here is a simple usage return error. Usage for validation methods.
 
 ```csharp
@@ -19,16 +21,59 @@ Here is a simple usage return error. Usage for validation methods.
     }
 ```
 
-![](./doc/DivideByZero.png)
+&nbsp;
 
-Combine methods by using then expression
+Combine methods by using **Then** expression
 
-![](./doc/UsegeOfThen.PNG)
+```csharp
 
-Usage of pipe
+    public static Response ProcessByUserId(int userId)
+    {
+        return GetUserFromDatabase(userId)
+              .Then(SendEMailForUser)
+              .Then(MarkUserAsMailNotificationCompleted)
+              .Then(SaveUser);
+    }
 
-![](./doc/UsageOfPipe.PNG)
+    public static Response<UserInfo> GetUserFromDatabase(int userId)
+    {
+        throw new NotImplementedException();
+    }
 
+    public static Response<UserInfo> SendEMailForUser(UserInfo userInfo)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static Response<UserInfo> MarkUserAsMailNotificationCompleted(UserInfo userInfo)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static Response<UserInfo> SaveUser(UserInfo userInfo)
+    {
+        throw new NotImplementedException();
+    }
+    public class UserInfo
+    {
+    }
+```
+&nbsp;
+
+Usage of **Pipe**
+
+```csharp
+
+    public static Response ProcessByUserId(int userId)
+    {
+        return Pipe(userId,
+                    GetUserFromDatabase,
+                    SendEMailForUser,
+                    MarkUserAsMailNotificationCompleted,
+                    SaveUser);
+    }
+```
+&nbsp;
 
 Here is my best practices in functional programing
 --------------------------------------------------

@@ -440,15 +440,38 @@ public static class FpExtensions
     #endregion
 
 
-
-
-    public static Response<int> DivideByZero(int value, int divider)
+    public static Response ProcessByUserId(int userId)
     {
-        if (divider == 0)
-        {
-            return "Divider value cannot be zero.";
-        }
-
-        return value / divider;
+        return Pipe(userId,
+                    GetUserFromDatabase,
+                    SendEMailForUser,
+                    MarkUserAsMailNotificationCompleted,
+                    SaveUser);
     }
+
+    public static Response<UserInfo> GetUserFromDatabase(int userId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static Response<UserInfo> SendEMailForUser(UserInfo userInfo)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static Response<UserInfo> MarkUserAsMailNotificationCompleted(UserInfo userInfo)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static Response<UserInfo> SaveUser(UserInfo userInfo)
+    {
+        throw new NotImplementedException();
+    }
+    
+    
+}
+
+public class UserInfo
+{
 }
