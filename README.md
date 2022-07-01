@@ -7,6 +7,18 @@ Response<TValue>
 
 Here is a simple usage return error. Usage for validation methods.
 
+```csharp
+    public static Response<int> DivideByZero(int value, int divider)
+    {
+        if (divider == 0)
+        {
+            return "Divider value cannot be zero.";
+        }
+
+        return value / divider;
+    }
+```
+
 ![](./doc/DivideByZero.png)
 
 Combine methods by using then expression

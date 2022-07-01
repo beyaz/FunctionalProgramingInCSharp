@@ -438,4 +438,17 @@ public static class FpExtensions
         return responseA.Errors.ToArray();
     }
     #endregion
+
+
+
+
+    public static Response<int> DivideByZero(int value, int divider)
+    {
+        if (divider == 0)
+        {
+            return "Divider value cannot be zero.";
+        }
+
+        return value / divider;
+    }
 }
